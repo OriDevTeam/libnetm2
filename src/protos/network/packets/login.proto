@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package network.packets.authentication;
+
+message LoginPacket {
+  uint32 Header = 1;
+
+  string Username = 2;
+  string Password = 3;
+}
+

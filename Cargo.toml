@@ -1,0 +1,17 @@
+[package]
+name = "libnetm2"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name="libopennetm2"
+crate-type = ["dylib"]
+
+
+[dependencies]
+prost = "0.10.4"
+protobuf = "3.1.0"
+
+
+[build-dependencies]
+prost-build = "0.10.4"
