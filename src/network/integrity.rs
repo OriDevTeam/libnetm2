@@ -1,3 +1,4 @@
 // Relative Modules
-pub mod handshake;
+pub(crate) mod encryption;
+pub(crate) mod synchrony;
 

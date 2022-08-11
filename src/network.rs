@@ -1,5 +1,6 @@
-// Relative Usings
-pub mod client;
-pub mod authentication;
-pub mod integrity;
+// Relative Uses
+pub mod vials;
 pub mod connection;
+pub mod integrity;
+pub mod packets;
+

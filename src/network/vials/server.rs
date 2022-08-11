@@ -1,2 +1,2 @@
 // Relative Modules
-pub mod settings;
+mod channel;

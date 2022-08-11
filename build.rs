@@ -1,9 +1,9 @@
-// System Usings
+// Standard Uses
 use std::{path::PathBuf, env, fs};
 
-// Library Usings
+// Crate Uses
 
-// External Usings
+// External Uses
 extern crate prost_build;
 
 
@@ -11,7 +11,6 @@ const PROTOS_PATH: &str = "protos/";
 
 
 fn main() {
-    println!("Main Here");
     prost_build::compile_protos(&["src/protos/network/packets/login.proto"],
                                 &["src/"]).unwrap();
 }
