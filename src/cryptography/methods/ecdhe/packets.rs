@@ -17,8 +17,6 @@ impl Sender for EllipticCurveDiffieHellman {
 }
 
 impl Receiver for EllipticCurveDiffieHellman {
-    fn receive_bytes(&self, data: Vec<u8>) { todo!() }
-
     fn receive_packet(&mut self, packet: Box<dyn Packet>) -> Result<Box<dyn Packet>, ()> {
         let concrete_packet = packet.downcast_ref::<ECDHEPublicKeyReceivePacket>().unwrap();
 
@@ -46,8 +44,8 @@ impl Packet for ECDHEPublicKeyReceivePacket {
 }
 
 impl PacketBuilder for ECDHEPublicKeyReceivePacket {
-    fn from_bytes(data: Vec<u8>) -> Self { todo!() }
+    fn from_bytes(_data: Vec<u8>) -> Self { todo!() }
 
-    fn from_bytes_boxed(data: Vec<u8>) -> Box<dyn Packet> { todo!() }
+    fn from_bytes_boxed(_data: Vec<u8>) -> Box<dyn Packet> { todo!() }
 }
 

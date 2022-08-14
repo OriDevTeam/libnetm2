@@ -11,8 +11,8 @@ use crate::cryptography::kem::{KeyAgreement, KeyAgreementBuilder};
 
 
 pub struct DiffieHellman {
-    right_private_key: i32,
-    left_private_key: i32,
+    // right_private_key: i32,
+    // left_private_key: i32,
 
     pub diffie: i32,
     agreed_value_length: usize
@@ -50,8 +50,8 @@ impl<T> KeyAgreementBuilder<T> for DiffieHellman {
     fn new_boxed() -> Box<dyn KeyAgreement<T>> {
         Box::new(Self {
             diffie: 0,
-            right_private_key: 0,
-            left_private_key: 0,
+            // right_private_key: 0,
+            // left_private_key: 0,
             agreed_value_length: 0
         })
     }

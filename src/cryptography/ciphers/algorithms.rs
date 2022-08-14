@@ -30,25 +30,25 @@ pub trait BlockDetails {}
 
 
 pub enum Algorithm {
-    RC6,
-    AES,
-    MARS,
+    // RC6,
+    // AES,
+    // MARS,
     TwoFish(TwofishAlgorithm),
-    Serpent,
-    CAST256,
-    IDEA,
-    ThreeDES,
-    Camellia,
-    SEED,
-    RC5,
+    // Serpent,
+    // CAST256,
+    // IDEA,
+    // ThreeDES,
+    // Camellia,
+    // SEED,
+    // RC5,
     Blowfish(BlowfishAlgorithm),
-    TEA,
-    SKIPJACK,
-    SHACAL2,
+    // TEA,
+    // SKIPJACK,
+    // SHACAL2,
 }
 
 impl Algorithm {
-    pub fn pick(hint: i32) -> Algorithm { Self::default() }
+    pub fn pick(_hint: i32) -> Algorithm { Self::default() }
 }
 
 impl Default for Algorithm {

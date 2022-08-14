@@ -26,23 +26,6 @@ impl Manager {
     pub fn get_type(&self, _header: u8) -> Result<Box<dyn Packet>, ()> {
         todo!()
     }
-
-    pub fn receive(&self, data: Vec<u8>) {
-        let header = data[0];
-
-        let _packet_type = self.get_type(header).unwrap();
-
-        //let packet = _packet_type.from_bytes(&data).unwrap();
-
-        // self.dispatch_packet(packet);
-    }
-    
-    fn dispatch_packet(&self, _packet: &dyn Packet) {
-        loop {
-
-        }
-
-    }
 }
 
 

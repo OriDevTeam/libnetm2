@@ -1,2 +1,6 @@
 /target
 /Cargo.lock
+
+
+# Sensitive Tests
+/tests/external_client.rs

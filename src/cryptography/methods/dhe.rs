@@ -24,10 +24,10 @@ impl EncryptionMethod for DiffieHellmanEphemeral {
 
     fn activate(&mut self) -> bool { todo!() }
 
-    fn encrypt(&self, data: Vec<u8>) -> Result<Vec<u8>, ()> {
+    fn encrypt(&self, _data: Vec<u8>) -> Result<Vec<u8>, ()> {
         todo!()
     }
 
-    fn decrypt(&self, data: Vec<u8>) -> Result<Vec<u8>, ()> { todo!() }
+    fn decrypt(&self, _data: Vec<u8>) -> Result<Vec<u8>, ()> { todo!() }
 }
 

@@ -26,7 +26,9 @@ impl Client {
         let channel = ClientChannel::connect(settings);
         self.channels.push(channel);
 
-        self.channels.last_mut().unwrap()
+        let channel = self.channels.last_mut().unwrap();
+
+        channel
     }
 }
 

@@ -42,7 +42,7 @@ impl ImprovedPacketEncryption<DiffieHellman> {
         return self.activated
     }
 
-    fn setup(&self, polarity: bool) -> bool {
+    fn setup(&self, _polarity: bool) -> bool {
         /*
         let shared = self.key_agreement.shared();
 
@@ -127,12 +127,6 @@ pub struct ProcessData {
     algorithm: Algorithm,
     key_length: usize,
     iv_length: usize,
-    key: TempKey,
-    iv: TempKey
 }
 
-pub struct TempKey {}
-impl TempKey {
-    pub fn assign(size: usize, length: usize) { todo!() }
-}
 

@@ -1,5 +1,6 @@
 // Relative Modules
 mod test;
+mod external_client;
 
 // Standard Uses
 

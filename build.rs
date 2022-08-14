@@ -11,8 +11,10 @@ const PROTOS_PATH: &str = "protos/";
 
 
 fn main() {
-    prost_build::compile_protos(&["src/protos/network/packets/login.proto"],
-                                &["src/"]).unwrap();
+    prost_build::compile_protos(&[
+        "src/protos/network/packets/synchronization/phase.proto",
+        "src/protos/network/packets/authentication/login.proto"
+    ], &["src/"]).unwrap();
 }
 
 

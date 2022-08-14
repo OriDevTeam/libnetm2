@@ -22,6 +22,7 @@ blowfish = { version = "0.9.1", features = ["zeroize"] }
 twofish = { version = "0.7.1", features = ["zeroize"] }
 p256 = { version = "0.11.1", features = ["ecdh"] }
 downcast-rs = "1.2.0"
+enum_dispatch = "0.3.8"
 
 [build-dependencies]
 prost-build = "0.11.0"

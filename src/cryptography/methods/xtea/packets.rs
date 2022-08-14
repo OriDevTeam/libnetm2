@@ -10,7 +10,7 @@ use crate::network::vials::base::SocketBase;
 
 
 impl Receiver for IPEXTEA {
-    fn receive_packet(&mut self, packet: Box<dyn Packet>) -> Result<Box<dyn Packet>, ()> {
+    fn receive_packet(&mut self, _packet: Box<dyn Packet>) -> Result<Box<dyn Packet>, ()> {
         todo!()
     }
 }

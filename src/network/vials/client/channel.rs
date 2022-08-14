@@ -1,5 +1,7 @@
 // Standard Uses
 use std::sync::Arc;
+use std::mem::size_of;
+use std::rc::Rc;
 
 // Crate Uses
 use crate::network::connection::settings::ConnectionSettings;
@@ -7,7 +9,7 @@ use crate::network::integrity::encryption::{EncryptionMethod};
 use crate::network::integrity::synchrony::handshake::{Handshake};
 use crate::network::vials::base::net::Net;
 use crate::network::integrity::synchrony::handshake::hand::HandBuilder;
-use crate::network::integrity::synchrony::handshake::left_hand::{HandshakePacket, LeftHand};
+use crate::network::integrity::synchrony::handshake::left_hand::{LeftHand};
 use crate::network::vials::base::SocketBase;
 use crate::network::integrity::synchrony::phase::PhasePacket;
 use crate::network::packets::dynamic_manager::DynamicManager;
@@ -19,7 +21,8 @@ use crate::network::packets::packet::{Packet, PacketBuilder, PacketHeader, Sende
 pub struct ClientChannel {
     pub settings: ConnectionSettings,
     pub socket: Arc<Net>,
-    pub manager: DynamicManager,
+    // pub socket: Net,
+    pub manager: Rc<DynamicManager>,
 
     // synchronization_methods: Vec<Box<dyn SynchronizationMethod>>,
     handshake: Handshake,
@@ -34,12 +37,18 @@ impl ClientChannel {
     }
 
     pub fn connect(settings: ConnectionSettings) -> Self {
-        let net = Net::connect(&settings).unwrap();
+        let mut manager = Rc::new(DynamicManager::new());
+        let clone = Rc::get_mut(&mut manager).unwrap();
+
+        register_packets(clone);
+
+        let net = Net::connect(&settings, manager.clone()).unwrap();
 
         let channel = Self {
             settings: settings.clone(),
             socket: Arc::from(net),
-            manager: DynamicManager::new(),
+            // socket: net,
+            manager,
 
             // handshake: Handshake::new(Side::Left),
             handshake: Handshake::new2(LeftHand::new_boxed()),
@@ -52,6 +61,7 @@ impl ClientChannel {
     }
 
     pub fn prepare(&mut self) {
+
     }
 }
 
@@ -62,17 +72,26 @@ impl Sender for ClientChannel {
 }
 
 
-pub(crate) fn register_packets(mut client: ClientChannel) {
-    client.manager.add_packet(PhasePacket::header(), PhasePacket::from_bytes_boxed);
-    client.manager.add_receiver(HandshakePacket::header(), receive_phase_packet);
-
-    // client.manager.add_packet
+pub(crate) fn register_packets(manager: &mut DynamicManager) {
+    manager.add_packet(PhasePacket::HEADER, size_of::<PhasePacket>(), PhasePacket::from_bytes_rc);
+    manager.add_receiver(PhasePacket::HEADER, receive_phase_packet);
 }
 
 
-// #[receive_packet(MANAGER, TestPacket)]
-fn receive_phase_packet(_packet: Box<dyn Packet>) {
+// #[receive_packet(MANAGER, PhasePacket)]
+fn receive_phase_packet(_packet: Rc<dyn Packet>) {
+    let packet = _packet.downcast_ref::<PhasePacket>().unwrap();
 
+    println!("Got Phase packet {:?}", packet);
 }
 
 
+pub enum ClientPacket {
+    Phase(PhasePacket)
+}
+
+impl Packet for ClientPacket {
+    fn to_bytes(&self) -> Vec<u8> {
+        todo!()
+    }
+}

@@ -7,6 +7,7 @@ use crate::network::packets::packet::{Packet, PacketBuilder, PacketHeader};
 // External Uses
 
 
+#[derive(Debug)]
 pub enum Phase {
     Close,
     Handshake,
@@ -19,6 +20,7 @@ pub enum Phase {
 }
 
 
+#[derive(Debug)]
 pub struct PhasePacket {
     pub phase: Phase
 }
@@ -30,7 +32,7 @@ impl Packet for PhasePacket {
 }
 
 impl PacketHeader for PhasePacket {
-    fn header() -> u8 { 253 }
+    const HEADER: u8 = 253;
 }
 
 impl PacketBuilder for PhasePacket {

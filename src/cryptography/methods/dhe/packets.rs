@@ -7,13 +7,13 @@ use crate::network::packets::packet::{Packet, PacketBuilder, PacketHeader};
 
 
 pub struct IPEKeyAgreementPacket {
-    agreed_length: u16,
-    data_length: i16,
-    data: [u8; IPEKeyAgreementPacket::MAXIMUM_DATA_LENGTH]
+    // agreed_length: u16,
+    // data_length: i16,
+    // data: [u8; IPEKeyAgreementPacket::MAXIMUM_DATA_LENGTH]
 }
 
 impl IPEKeyAgreementPacket {
-    const MAXIMUM_DATA_LENGTH: usize = u8::MAX as usize;
+    // const MAXIMUM_DATA_LENGTH: usize = u8::MAX as usize;
 }
 
 impl Packet for IPEKeyAgreementPacket {
@@ -21,7 +21,7 @@ impl Packet for IPEKeyAgreementPacket {
 }
 
 impl PacketHeader for IPEKeyAgreementPacket {
-    fn header() -> u8 { 250 }
+    const HEADER: u8 = 250;
 }
 
 impl PacketBuilder for IPEKeyAgreementPacket {
@@ -39,7 +39,7 @@ impl Packet for IPEKeyAgreedPacket {
 }
 
 impl PacketHeader for IPEKeyAgreedPacket {
-    fn header() -> u8 { 251 }
+    const HEADER: u8 = 251;
 }
 
 impl PacketBuilder for IPEKeyAgreedPacket {

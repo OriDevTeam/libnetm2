@@ -14,7 +14,7 @@ impl Packet for Handshake {
 }
 
 impl PacketHeader for Handshake {
-    fn header() -> u8 { 255 }
+    const HEADER: u8 = 255;
 }
 
 impl PacketBuilder for Handshake {

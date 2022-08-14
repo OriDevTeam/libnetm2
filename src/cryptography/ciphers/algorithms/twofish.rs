@@ -1,7 +1,7 @@
 // Standard Uses
 
 // Crate Uses
-use crate::cryptography::ciphers::algorithms::{BlockAlgorithm, BlockAlgorithmBuilder, BlockDetails};
+use crate::cryptography::ciphers::algorithms::{BlockAlgorithm, BlockAlgorithmBuilder};
 
 
 // Library Uses
@@ -66,13 +66,3 @@ impl BlockAlgorithmBuilder for TwofishAlgorithm {
          */
     }
 }
-
-
-pub struct BlockAlgorithmPicker {}
-
-impl BlockAlgorithmPicker {
-    pub(crate) fn pick(hint: i32) -> Box<dyn BlockDetails> {
-        todo!()
-    }
-}
-

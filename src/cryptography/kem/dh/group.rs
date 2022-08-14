@@ -4,7 +4,7 @@
 
 // External Uses
 
-
+/*
 pub(crate) fn make_modp_group_1024bit_with_160bit_primer_order_subgroup () -> [i32; 3] {
     // RFC 5114, 1024-bit MODP Group with 160-bit Prime Order Subgroup
     // http://tools.ietf.org/html/rfc5114#section-2.1
@@ -27,4 +27,4 @@ pub(crate) fn make_modp_group_1024bit_with_160bit_primer_order_subgroup () -> [i
 
     [p, g, q]
 }
-
+*/

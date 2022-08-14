@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package network.packets.synchronization;
+
+message PhasePacket {
+  bytes Header = 1;
+
+  bytes Phase = 2;
+}
+
