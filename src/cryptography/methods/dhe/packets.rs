@@ -24,11 +24,6 @@ impl PacketHeader for IPEKeyAgreementPacket {
     const HEADER: u8 = 250;
 }
 
-impl PacketBuilder for IPEKeyAgreementPacket {
-    fn from_bytes(_data: Vec<u8>) -> Self { todo!() }
-    fn from_bytes_boxed(_data: Vec<u8>) -> Box<dyn Packet> { todo!() }
-}
-
 ////////////////////////////////////
 
 pub struct IPEKeyAgreedPacket {}
@@ -42,7 +37,3 @@ impl PacketHeader for IPEKeyAgreedPacket {
     const HEADER: u8 = 251;
 }
 
-impl PacketBuilder for IPEKeyAgreedPacket {
-    fn from_bytes(_data: Vec<u8>) -> Self { todo!() }
-    fn from_bytes_boxed(_data: Vec<u8>) -> Box<dyn Packet> { todo!() }
-}

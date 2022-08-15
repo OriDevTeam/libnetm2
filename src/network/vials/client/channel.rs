@@ -1,6 +1,5 @@
 // Standard Uses
 use std::sync::Arc;
-use std::mem::size_of;
 use std::rc::Rc;
 
 // Crate Uses
@@ -11,9 +10,8 @@ use crate::network::vials::base::net::Net;
 use crate::network::integrity::synchrony::handshake::hand::HandBuilder;
 use crate::network::integrity::synchrony::handshake::left_hand::{LeftHand};
 use crate::network::vials::base::SocketBase;
-use crate::network::integrity::synchrony::phase::PhasePacket;
 use crate::network::packets::dynamic_manager::DynamicManager;
-use crate::network::packets::packet::{Packet, PacketBuilder, PacketHeader, Sender};
+use crate::network::packets::packet::{Sender};
 
 // External Uses
 
@@ -39,8 +37,6 @@ impl ClientChannel {
     pub fn connect(settings: ConnectionSettings) -> Self {
         let mut manager = Rc::new(DynamicManager::new());
         let clone = Rc::get_mut(&mut manager).unwrap();
-
-        register_packets(clone);
 
         let net = Net::connect(&settings, manager.clone()).unwrap();
 
@@ -71,27 +67,3 @@ impl Sender for ClientChannel {
     }
 }
 
-
-pub(crate) fn register_packets(manager: &mut DynamicManager) {
-    manager.add_packet(PhasePacket::HEADER, size_of::<PhasePacket>(), PhasePacket::from_bytes_rc);
-    manager.add_receiver(PhasePacket::HEADER, receive_phase_packet);
-}
-
-
-// #[receive_packet(MANAGER, PhasePacket)]
-fn receive_phase_packet(_packet: Rc<dyn Packet>) {
-    let packet = _packet.downcast_ref::<PhasePacket>().unwrap();
-
-    println!("Got Phase packet {:?}", packet);
-}
-
-
-pub enum ClientPacket {
-    Phase(PhasePacket)
-}
-
-impl Packet for ClientPacket {
-    fn to_bytes(&self) -> Vec<u8> {
-        todo!()
-    }
-}

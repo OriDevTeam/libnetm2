@@ -1,8 +1,8 @@
 // Standard Uses
+use std::rc::Rc;
 
 // Crate Uses
 use crate::network::packets::packet::{Packet, PacketBuilder, PacketHeader};
-
 
 // External Uses
 
@@ -35,12 +35,11 @@ impl PacketHeader for PhasePacket {
     const HEADER: u8 = 253;
 }
 
-impl PacketBuilder for PhasePacket {
-    fn from_bytes(data: Vec<u8>) -> Self {
-        todo!()
-    }
 
-    fn from_bytes_boxed(data: Vec<u8>) -> Box<dyn Packet> {
-        todo!()
-    }
+// #[receive_packet(MANAGER, PhasePacket)]
+pub(crate) fn receive_phase_packet(packet: Rc<dyn Packet>) {
+    let packet = packet.downcast_ref::<PhasePacket>().unwrap();
+
+    println!("Got Phase packet {:?}", packet);
 }
+

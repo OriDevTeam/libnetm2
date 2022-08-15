@@ -5,16 +5,16 @@ use std::sync::Arc;
 
 // Crate Uses
 use crate::network::vials::base::SocketBase;
-use crate::protos::packets;
 
 // External Uses
 use downcast_rs::{Downcast, impl_downcast};
-use prost::{Message};
-use prost::alloc::{vec, vec::Vec};
+use prost::alloc::{vec::Vec};
+use enum_dispatch::enum_dispatch;
 
 
+#[enum_dispatch]
 pub trait Packet: Downcast {
-    fn to_bytes(&self) -> Vec<u8>;
+    fn to_bytes(&self) -> Vec<u8> { todo!() }
 }
 impl_downcast!(Packet);
 
@@ -23,11 +23,8 @@ pub trait PacketHeader: Packet {
 }
 
 pub trait PacketBuilder: Packet {
-    fn from_bytes(data: Vec<u8>) -> Self;
     fn from_bytes_boxed(data: Vec<u8>) -> Box<dyn Packet> { todo!() }
-    fn from_bytes_rc(data: Vec<u8>) -> Rc<dyn Packet> {
-        todo!()
-    }
+    fn from_bytes_rc(data: Vec<u8>) -> Rc<dyn Packet> { todo!() }
 }
 
 impl Display for Box<dyn Packet> {
@@ -58,6 +55,8 @@ pub trait Sender {
 }
 
 
+// TODO: encoding/decoding necessary for common dispatch of packet types
+/*
 pub fn create() {
     let phase = packets::PhasePacket::default();
 
@@ -75,3 +74,5 @@ impl<T: prost::Message + 'static> Packet for T {
         todo!()
     }
 }
+
+*/

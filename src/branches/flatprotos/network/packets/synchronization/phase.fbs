@@ -1,0 +1,7 @@
+// Phase Synchronization Packet
+
+namespace network.packets.synchronization;
+
+struct PhasePacket {
+
+}

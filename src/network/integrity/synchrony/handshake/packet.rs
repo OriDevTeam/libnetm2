@@ -17,13 +17,4 @@ impl PacketHeader for Handshake {
     const HEADER: u8 = 255;
 }
 
-impl PacketBuilder for Handshake {
-    fn from_bytes(_data: Vec<u8>) -> Self {
-        todo!()
-    }
-
-    fn from_bytes_boxed(_data: Vec<u8>) -> Box<dyn Packet> {
-        todo!()
-    }
-}
 
